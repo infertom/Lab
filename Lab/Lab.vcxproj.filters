@@ -13,14 +13,36 @@
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
+    <Filter Include="源文件\Gossip">
+      <UniqueIdentifier>{7824a755-0a82-4f5b-80a8-55c5e562b2f0}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="源文件\Algorithm">
+      <UniqueIdentifier>{e981b51d-fede-48cb-9061-4c8b4695f451}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="one.cpp">
-      <Filter>源文件</Filter>
-    </ClCompile>
-  </ItemGroup>
-  <ItemGroup>
+    <None Include="Algorithm\out.txt" />
     <None Include="in.txt" />
     <None Include="out.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="Algorithm\1_1.cpp">
+      <Filter>源文件\Algorithm</Filter>
+    </ClCompile>
+    <ClCompile Include="Algorithm\1_2.cpp">
+      <Filter>源文件\Algorithm</Filter>
+    </ClCompile>
+    <ClCompile Include="Algorithm\2_1.cpp">
+      <Filter>源文件\Algorithm</Filter>
+    </ClCompile>
+    <ClCompile Include="Algorithm\2_2.cpp">
+      <Filter>源文件\Algorithm</Filter>
+    </ClCompile>
+    <ClCompile Include="Gossip\one.cpp">
+      <Filter>源文件\Gossip</Filter>
+    </ClCompile>
+    <ClCompile Include="Algorithm\3_2.cpp">
+      <Filter>源文件\Algorithm</Filter>
+    </ClCompile>
   </ItemGroup>
 </Project>

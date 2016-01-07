@@ -74,10 +74,16 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="one.cpp" />
+    <ClCompile Include="Algorithm\1_1.cpp" />
+    <ClCompile Include="Algorithm\1_2.cpp" />
+    <ClCompile Include="Algorithm\2_1.cpp" />
+    <ClCompile Include="Algorithm\2_2.cpp" />
+    <ClCompile Include="Algorithm\3_2.cpp" />
+    <ClCompile Include="Gossip\one.cpp" />
   </ItemGroup>
   <ItemGroup>
     <None Include="in.txt" />
+    <None Include="Algorithm\out.txt" />
     <None Include="out.txt" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

@@ -1,10 +1,9 @@
-/************************************************************************/
-/* 
+/*
+********************************************************************** 
 分布式系统导论作业一
-Gossip实现
-*/
-/************************************************************************/
-
+Gossip模拟
+分组：范希航， 丁媛洁，张纯鹏，刘松翔， 占淦
+**********************************************************************
 #include <cstdio>
 #include <cstdlib>
 #include <cstring>
@@ -15,7 +14,7 @@ Gossip实现
 using namespace std;
 typedef long long ll;
 
-const int MAXSiZE = 1000 + 10;
+const int MAXSiZE = 100000 + 10;
 const int MAXVALUE = 100;
 const double EPS = 1e-6;
 
@@ -25,12 +24,9 @@ double val[MAXSiZE];//节点价值，从1起始
 double pro[MAXSiZE];//节点通信概率，从1起始
 bool vis[MAXSiZE];//是否被隔离,true为隔离，从1起始
 
-/************************************************************************/
-/* 
+********************************************************************** 
 产生随机数
-*/
-/************************************************************************/
-//初始化随机函数种子
+********************************************************************* /初始化随机函数种子
 void randInit()
 {
 	srand((unsigned)time(NULL));
@@ -51,15 +47,12 @@ double randomReal(int n)
 //随机产生[0,n]区间整数
 int randomInt(int n)
 {
-	return (int)(randomBase() + 0.5);
+	return (int)(randomBase() * n + 0.5);
 }
 
-/************************************************************************/
-/* 
-gossiping实现
-*/
-/************************************************************************/
-//初始化
+********************************************************************** 
+gossiping模拟
+********************************************************************* /初始化
 void init()
 {
 	randInit();
@@ -73,7 +66,7 @@ void init()
 	}
 }
 
-//判断p是否通讯，true为通讯
+//判断节点p是否通讯，true为通讯
 bool isCommunicate(int p)
 {
 	return (randomReal(1) - pro[p] < EPS);
@@ -85,6 +78,24 @@ bool equal(double a, double b)
 	return (fabs(a-b) < EPS);
 }
 
+//打印所有节点相关信息
+void printValue()
+{
+	cout<<"value:"<<endl;
+	for (int i = 1; i <= n; i++) {
+		cout<<"("<<i<<")"<<val[i]<<"  ";
+	}
+	cout<<endl;
+
+	cout<<"vis:"<<endl;
+	for (int i = 1; i <= n; i++){
+		cout<<"("<<i<<")"<<vis[i]<<"  ";
+	}
+	cout<<endl;
+}
+
+
+//每个节点每轮只进行一次通讯
 bool gossiping()
 {
 	bool cFlag = false;
@@ -95,15 +106,13 @@ bool gossiping()
 			vis[i] = true;
 		}else{
 			int j = randomInt(n-1) + 1;
-			/*if ( vis[j] ) continue;*/
 			cFlag |= true;
 			if ( equal(val[i], val[j]) ) {
 				pro[i] /= k;
 			}
 			else {
 				double cVal = (val[i] + val[j]) / 2;
-				val[i] = cVal;
-				val[j] = cVal;
+				val[i] = val[j] = cVal;
 			}
 		}
 	}
@@ -111,6 +120,8 @@ bool gossiping()
 	return cFlag;
 }
 
+
+//在一轮中一个节点通讯后会继续判断是否通讯，被隔离节点信息更新后会脱离隔离状态
 bool gossipingSd()
 {
 	bool cFlag = false;
@@ -126,24 +137,16 @@ bool gossipingSd()
 			}
 			else {
 				double cVal = (val[i] + val[j]) / 2;
-				val[i] = cVal;
-				val[j] = cVal;
+				val[i] = val[j] = cVal;
 				pro[j] = 1;
 				vis[j] = false;
 			}
 		}
 		vis[i] = true;
 	}
+	//printValue();
 
 	return cFlag;
-}
-
-void printValue()
-{
-	for (int i = 1; i <= n; i++) {
-		cout<<val[i]<<"  ";
-	}
-	cout<<endl;
 }
 
 int main()
@@ -155,36 +158,21 @@ int main()
 	int ans;
 	while ( cin>>n>>k )
 	{
-		//cout<<"Fc 1:"<<endl;
-		//ans = 0;
-		//init();
-		////printValue();
-		//st = clock();
-		//while ( flag )
-		//{
-		//	//printValue();
-		//	flag = gossiping();
-		//	if ( flag ) ans++;
-		//}
-		//ed = clock();
-		//cout<<(ed-st)<<endl;
-		//cout<<ans<<endl;
-
-		cout<<"Sd 2:"<<endl;
 		ans = 0;
 		init();
 		//printValue();
-		st = clock();
+		//st = clock();
 		while ( flag )
 		{
-			//printValue();
+			ans++;
 			flag = gossipingSd();
-			if ( flag ) ans++;
 		}
-		ed = clock();
-		cout<<(ed-st)<<endl;
-		cout<<ans<<endl;
+		//ed = clock();
+		//cout<<(ed-st)<<endl;
+		cout<<"n="<<n<<"   k="<<k<<endl;
+		cout<<"ans="<<ans<<endl;
+		//printValue();
 	}
 
 	return 0;
-}
+}*/
